@@ -1,0 +1,169 @@
+    * {
+        margin: 0;
+    }
+
+    .header {
+        position: relative;
+        padding: 10px 0;
+        height: 60%;
+        width: 1024px;
+        margin: 0 auto;
+    }
+
+    .login {
+        text-align: right;
+        padding: 15px;
+    }
+
+    .login2 {
+        background-color: white;
+        border: none;
+        padding: 10px;
+        color: #9bcfb8;
+    }
+
+    .search {
+        float: right;
+        margin: 40px 50px 0px 0px;
+    }
+
+    .searchtxt {
+        width: 470px;
+        height: 43.8px;
+        border-radius: 5px;
+        border: solid 2px #9bcfb8;
+
+    }
+
+    .searchbtn {
+        background-image: url(../images/%EA%B2%80%EC%83%89%EC%96%B4.png);
+        background-size: 50px;
+        width: 50px;
+        height: 49px;
+        text-align: center;
+        border: none;
+        margin-left: -55px;
+        margin-top: 0px;
+        vertical-align: top;
+        border-radius: 5px;
+    }
+
+    .menubar {
+        border: 1px solid #9bcfb8;
+        background-color: white;
+        width: 1024x;
+        height: 60px;
+    }
+
+    .menu {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .menu > li {
+        list-style: none;
+        display: inline-block;
+        padding: 20px;
+        width: 20%;
+        /*        margin-top: 17px;*/
+        margin-bottom: 20px;
+    }
+
+    .menu > li > a {
+        font-weight: bold;
+        color: #23A41A;
+        /*        margin-bottom: 10px;*/
+        text-decoration: none;
+
+    }
+
+    .smallmenu {}
+
+    /*    네브바 상세메뉴 호버 컬러 및 위치*/
+    .smallmenu > li {
+        list-style: none;
+        color: white;
+        padding: 15px;
+        text-align: center;
+
+    }
+
+    /*    Hover Nevbar Font Color*/
+    .smallmenu > li a {
+        list-style: none;
+        color: #85B8CB;
+        text-decoration: none;
+        font-weight: bold;
+        padding-right: 45px;
+    }
+
+    .smallmenu li:hover a {
+        color: rgb(186, 227, 192);
+
+    }
+
+    /*    Hover Nevbar Background color*/
+    .menubar li ul {
+        background: white;
+        /*        border: 1px solid red;*/
+        box-shadow: 1px 1px 1px 1px;
+
+        display: none;
+        height: 300px;
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+        position: absolute;
+        width: 22.5%;
+        z-index: 200;
+        margin-right: 100px;
+        margin-top: 20px;
+    }
+
+    .footer {
+        bottom: 0;
+        width: 100%;
+        height: 130px;
+        background: rgb(176, 174, 174);
+    }
+
+    .footer1 {
+        text-align: center;
+    }
+
+    .clearFix li a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .clearFix li {
+        list-style: none;
+        display: inline-block;
+        padding: 10px;
+    }
+
+    .footer2 {
+        text-align: center;
+    }
+
+    .footer2 a {
+        text-decoration: none;
+        color: black;
+        padding: 6px;
+    }
+
+    .footer2 address {
+        padding: 6px;
+    }
+
+    .copyright {
+        padding: 6px;
+    }
+
+    .logo {
+        margin-left: 90px;
+    }
+
+    #input-color {
+        color: #7BC5AE;
+    }

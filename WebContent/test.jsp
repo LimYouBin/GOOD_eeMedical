@@ -13,7 +13,7 @@
 	
    <%
 	  Connection con = null;
-	  String url = "jdbc:mariadb://192.168.0.245:3306/gdproject";
+	  String url = "jdbc:mariadb://192.168.2.5:3306/gdproject";
 	  String id = "goodee";
    	  String pwd = "1234";
    

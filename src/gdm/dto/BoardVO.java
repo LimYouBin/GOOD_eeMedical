@@ -16,9 +16,18 @@ public class BoardVO {
 	private int likecnt;
 	private int unlikecnt;
 	
+	public BoardVO(int board_no, int member_no, String board_title, Date postdate, String writer, int viewcnt, int likecnt) {
+		this.board_no = board_no;
+		this.member_no = member_no;
+		this.board_title = board_title;
+		this.postdate = postdate;
+		this.writer = writer;
+		this.viewcnt = viewcnt;
+		this.likecnt = likecnt;
+	}
+	
 	public BoardVO(int board_no, int member_no, String board_title, String board_pwd, Date postdate, Date modifydate,
 			String writer, String content, String contentimg, int viewcnt, int likecnt, int unlikecnt) {
-		super();
 		this.board_no = board_no;
 		this.member_no = member_no;
 		this.board_title = board_title;

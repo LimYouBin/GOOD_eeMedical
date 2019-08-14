@@ -8,7 +8,7 @@ create table members
     nickname varchar(18) not null unique,
     phone varchar(13) not null unique,
     addr varchar(105) not null,
-    age int,
+    birth varchar(10),
     gender char check(gender in('M', 'F')),
     img varchar(70) default 'uploads/user.png',
     grd char(2)  default 'i',
