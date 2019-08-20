@@ -2,19 +2,23 @@
         margin: 0;
     }
 
+    /* 페이지 맨위부터 메인메뉴전까지(메인메뉴포함x) */
     .header {
         position: relative;
         padding: 10px 0;
         height: 60%;
         width: 1024px;
         margin: 0 auto;
+        font-weight: bold;
     }
 
+    /* 회원가입,로그인,마이페이지,로그아웃 전체 감싸는 부분 */
     .login {
         text-align: right;
         padding: 15px;
     }
 
+    /* 회원가입,로그인,마이페이지,로그아웃 개인 부분 */
     .login2 {
         background-color: white;
         border: none;
@@ -22,44 +26,51 @@
         color: #9bcfb8;
     }
 
+    /* 검색창 전체 감싸는 부분 */
     .search {
         float: right;
-        margin: 40px 50px 0px 0px;
+        margin: 40px 50px 0 0;
     }
 
+    /* 검색어 입력하는 부분 */
     .searchtxt {
         width: 470px;
         height: 43.8px;
         border-radius: 5px;
         border: solid 2px #9bcfb8;
-
     }
 
+    /* 검색로고 부분 */
     .searchbtn {
-        background-image: url(../images/%EA%B2%80%EC%83%89%EC%96%B4.png);
-        background-size: 50px;
-        width: 50px;
-        height: 49px;
+        background-image: url(../images/search_btn.png);
+        background-size: 44px;
+        width: 48px;
+        height: 44px;
         text-align: center;
         border: none;
-        margin-left: -55px;
-        margin-top: 0px;
+        margin-left: -53px;
+        margin-top: 0;
         vertical-align: top;
         border-radius: 5px;
     }
 
+    /* 메뉴바 전체 부분 */
     .menubar {
         border: 1px solid #9bcfb8;
         background-color: white;
-        width: 1024x;
         height: 60px;
+        margin: 0 auto;
     }
 
+    /* 메인 메뉴(전체) */
     .menu {
         text-align: center;
         margin-bottom: 50px;
+        width: 1024px;
+        margin: 0 auto;
     }
 
+    /* 메인 메뉴(개인) */
     .menu > li {
         list-style: none;
         display: inline-block;
@@ -67,8 +78,10 @@
         width: 20%;
         /*        margin-top: 17px;*/
         margin-bottom: 20px;
+
     }
 
+    /* 메인 메뉴(개인) 링크 글자 부분 */
     .menu > li > a {
         font-weight: bold;
         color: #23A41A;
@@ -77,18 +90,29 @@
 
     }
 
-    .smallmenu {}
+    /* 상세 메뉴(전체) */
+    .smallmenu {
+        background: white;
+        box-shadow: 1px 1px 1px 1px;
+        padding-left: 5px;
+        display: none;
+        height: 300px;
+        border: 0px;
+        position: absolute;
+        width: 200px;
+        z-index: 200;
+        margin-top: 20px;
+    }
 
-    /*    네브바 상세메뉴 호버 컬러 및 위치*/
+    /* 상세 메뉴(개인) */
     .smallmenu > li {
         list-style: none;
         color: white;
         padding: 15px;
         text-align: center;
-
     }
 
-    /*    Hover Nevbar Font Color*/
+    /* 상세 메뉴(개인) 링크 글자 부분 */
     .smallmenu > li a {
         list-style: none;
         color: #85B8CB;
@@ -97,73 +121,60 @@
         padding-right: 45px;
     }
 
+    /* 상세 메뉴(개인) 링크 글자 부분 hover */
     .smallmenu li:hover a {
         color: rgb(186, 227, 192);
-
     }
 
-    /*    Hover Nevbar Background color*/
-    .menubar li ul {
-        background: white;
-        /*        border: 1px solid red;*/
-        box-shadow: 1px 1px 1px 1px;
-
-        display: none;
-        height: 300px;
-        padding: 0px;
-        margin: 0px;
-        border: 0px;
-        position: absolute;
-        width: 22.5%;
-        z-index: 200;
-        margin-right: 100px;
-        margin-top: 20px;
-    }
-
+    /* 푸터(전체) */
     .footer {
         bottom: 0;
         width: 100%;
         height: 130px;
         background: rgb(176, 174, 174);
+        font-weight: bold;
     }
 
+    /* 이용약관ㅣ 개인정보 처리방침ㅣ 오시는길 부분 */
     .footer1 {
         text-align: center;
     }
 
+    /* footer1 링크 부분 */
     .clearFix li a {
         text-decoration: none;
         color: black;
     }
 
+    /* footer1 개인 부분 */
     .clearFix li {
         list-style: none;
         display: inline-block;
         padding: 10px;
     }
 
+    /* 서울시 금천구 가산디지털2로 대륭테크노타운 3차
+    문의전화 02)000-0000 부분 */
     .footer2 {
         text-align: center;
     }
 
-    .footer2 a {
-        text-decoration: none;
-        color: black;
-        padding: 6px;
-    }
-
+    /* 푸터 주소 부분 */
     .footer2 address {
         padding: 6px;
     }
 
+    /* 푸터부분 copyright */
     .copyright {
         padding: 6px;
     }
 
+    /* 구디메디컬 로고 */
     .logo {
         margin-left: 90px;
     }
 
-    #input-color {
-        color: #7BC5AE;
+/* placeholder 제품검색 왼쪽여백 */
+    .searchtxt {
+        padding-left: 15px;
     }

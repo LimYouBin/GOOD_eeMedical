@@ -44,6 +44,9 @@
     #line{padding: 10%;}
     
     #line-hend{padding: 30px;}
+    
+    /* placeholder 제품검색 왼쪽여백 */
+    .searchtxt {padding-left: 15px;}
 </style>
 <body>
 	<div class="head">
@@ -57,7 +60,7 @@
 	            <div>
 	                <span class="logo"><a href="main.html"><img src="./images/logo.JPG"></a></span>
 	                <div class="search">
-	                    <input type="text" class="searchtxt" style="padding-left: 15px;" placeholder="제품 검색">
+	                    <input type="text" placeholder="제품 검색" class="searchtxt">
 	                    <input type="button" class="searchbtn">
 	                </div>
 	            </div>
@@ -91,7 +94,7 @@
 	                </li>
 	                <li><a class="bigmenu" href="board.html" >커뮤니티</a>
 	                    <ul class="smallmenu">
-	                        <li><a href="Controller.do?command=community">게시판</a></li> <!-- 경로를 /Controller.do로 주면 안된다. -->
+	                        <li><a href="Controller.do?command=community&listCnt=10&page=1">게시판</a></li> <!-- 경로를 /Controller.do로 주면 안된다. -->
 	                    </ul>
 	                </li>
 	            </ul>
@@ -99,6 +102,11 @@
 	    </div>
 	
 	   <h1>메인페이지</h1>
+	   <form action="Controller.do?command=login" method="post">
+		   <input type="text" name="userid" />dooly
+		   <input type="password" name="userpwd" />123456
+		   <button type="submit">로그인</button>
+	   </form>
 	    <footer>
 	    <div class="footer">
 	        <div class="footer1">

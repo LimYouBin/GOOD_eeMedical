@@ -8,13 +8,33 @@ public class BoardVO {
 	private String board_title;
 	private String board_pwd;
 	private Date postdate;
-	private Date modifydate;
 	private String writer;
 	private String content;
 	private String contentimg;
 	private int viewcnt;
 	private int likecnt;
 	private int unlikecnt;
+	
+	// 비회원이 글 작성
+	public BoardVO(int board_no, String board_title, String board_pwd, String writer, String content, String contentimg) {
+		this.board_no = board_no;
+		this.board_title = board_title;
+		this.board_pwd = board_pwd;
+		this.writer = writer;
+		this.content = content;
+		this.contentimg = contentimg;
+	}
+	
+	// 회원이 글 작성
+	public BoardVO(int board_no, int member_no, String board_title, String board_pwd, String writer, String content, String contentimg) {
+		this.board_no = board_no;
+		this.member_no = member_no;
+		this.board_title = board_title;
+		this.board_pwd = board_pwd;
+		this.writer = writer;
+		this.content = content;
+		this.contentimg = contentimg;
+	}
 	
 	public BoardVO(int board_no, int member_no, String board_title, Date postdate, String writer, int viewcnt, int likecnt) {
 		this.board_no = board_no;
@@ -26,14 +46,13 @@ public class BoardVO {
 		this.likecnt = likecnt;
 	}
 	
-	public BoardVO(int board_no, int member_no, String board_title, String board_pwd, Date postdate, Date modifydate,
+	public BoardVO(int board_no, int member_no, String board_title, String board_pwd, Date postdate, 
 			String writer, String content, String contentimg, int viewcnt, int likecnt, int unlikecnt) {
 		this.board_no = board_no;
 		this.member_no = member_no;
 		this.board_title = board_title;
 		this.board_pwd = board_pwd;
 		this.postdate = postdate;
-		this.modifydate = modifydate;
 		this.writer = writer;
 		this.content = content;
 		this.contentimg = contentimg;
@@ -80,14 +99,6 @@ public class BoardVO {
 
 	public void setPostdate(Date postdate) {
 		this.postdate = postdate;
-	}
-
-	public Date getModifydate() {
-		return modifydate;
-	}
-
-	public void setModifydate(Date modifydate) {
-		this.modifydate = modifydate;
 	}
 
 	public String getWriter() {
@@ -141,8 +152,9 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [board_no=" + board_no + ", member_no=" + member_no + ", board_title=" + board_title
-				+ ", board_pwd=" + board_pwd + ", postdate=" + postdate + ", modifydate=" + modifydate + ", writer="
-				+ writer + ", content=" + content + ", contentimg=" + contentimg + ", viewcnt=" + viewcnt + ", likecnt="
-				+ likecnt + ", unlikecnt=" + unlikecnt + "]";
+				+ ", board_pwd=" + board_pwd + ", postdate=" + postdate + ", writer=" + writer + ", content=" + content
+				+ ", contentimg=" + contentimg + ", viewcnt=" + viewcnt + ", likecnt=" + likecnt + ", unlikecnt="
+				+ unlikecnt + "]";
 	}
+
 }

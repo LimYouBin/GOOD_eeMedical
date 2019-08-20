@@ -13,7 +13,8 @@ import gdm.dto.BoardVO;
 public class BoardViewAction implements IActionForward {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
+			throws ClassNotFoundException, SQLException {
 		System.out.println("게시글 상세 보기");
 		
 		int bno= Integer.parseInt(request.getParameter("no"));

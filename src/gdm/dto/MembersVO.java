@@ -19,10 +19,15 @@ public class MembersVO {
 	private Date member_join;
 	private String isdrop;
 	
+	public MembersVO(int member_no, String member_name, String nickname) {
+		this.member_no = member_no;
+		this.member_name = member_name;
+		this.nickname = nickname;
+	}
+	
 	public MembersVO(int member_no, String email, String member_pwd, String member_name, String nickname, String phone,
 			String addr, int age, String gender, String img, String grd, int money, int point, Date member_join,
 			String isdrop) {
-		super();
 		this.member_no = member_no;
 		this.email = email;
 		this.member_pwd = member_pwd;
@@ -162,10 +167,9 @@ public class MembersVO {
 
 	@Override
 	public String toString() {
-		return "MembersVO [member_no=" + member_no + ", email=" + email + ", member_pwd=" + member_pwd
-				+ ", member_name=" + member_name + ", nickname=" + nickname + ", phone=" + phone + ", addr=" + addr
-				+ ", age=" + age + ", gender=" + gender + ", img=" + img + ", grd=" + grd + ", money=" + money
-				+ ", point=" + point + ", member_join=" + member_join + ", isdrop=" + isdrop + "]";
+		return "MembersVO [member_no=" + member_no + ", email=" + email + ", member_pwd=" + member_pwd + ", member_name="
+				+ member_name + ", nickname=" + nickname + ", phone=" + phone + ", addr=" + addr + ", age=" + age
+				+ ", gender=" + gender + ", img=" + img + ", grd=" + grd + ", money=" + money + ", point=" + point
+				+ ", member_join=" + member_join + ", isdrop=" + isdrop + "]";
 	}
-		
 }

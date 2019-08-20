@@ -14,49 +14,56 @@
 <script src="js/common.js"></script>
 <script src="js/jquery.min.js"></script> <!-- jQuery를 쓰기위한 선언 -->
 </head>
-<style>
-	.btn_chkdel {margin: 10px 10px 10px 700px; text-align: center;}
-
-    .btn_chkdel .btn_m { background-color: #9bcfb8; color: #23A41A; border: solid 1px #23A41A;}
-
-    table { margin: 0 auto; width: 800px; border-top: 1px solid #23A41A; border-collapse: collapse;}
-
-    table th { padding: 10px 3px; border: 1px solid #23A41A; font-size: 12px;}
-
-    table td { padding: 10px 3px; border: 1px solid #23A41A; text-align: center;}
-
-    table .tit {text-align: left; padding: 0 10px;}
-
-    .icon {display: inline-block; width: 50px; height: 23px; line-height: 23px; text-align: center; color: #fff; font-size: 11px; border-radius: 3px}
-
-    .icon_s {background-color: #bababa;}
-
-    .icon_f {background-color: #346dff;}
-
-    .paging {text-align: center;}
-
-    .paging a {display: inline-block; width: 22px; height: 22px; vertical-align: top; line-height: 22px; text-align: center; margin: 20px 7px 0 7px;}
-
-    .paging .num {background-color: #d5d5d5; border-radius: 3px;}
-
-    .paging .num.on {font-weight: bold; color: #fff; background-color: #346dff;}
-
-    .paging .first { background: url(images/btn_firstpage.png) no-repeat 0 0; background-size: 22px; text-indent: -9999px;}
-
-    .paging .last {background: url(images/btn_lastpage.png) no-repeat 0 0; background-size: 22px; text-indent: -9999px;}
-
-    .menutitle {text-align: left; padding: 30px 0px 0px 0px; border-bottom: 3px solid #9bcfb8; background-color: white; margin: 0 auto; height: 60px; width: 1000px;}
-
-    .body {margin: 0 auto;}
-
-    .blank {height: 40px;}
-
-    .search2 { text-align: center; margin: 20px;}
+<script>
+	$(document).ready(function() {
+		$('#listCnt').change(function(){
+			let listCnt = $(this).val(); // select박스의 option value값
+			
+			$.ajax({
+				type: "GET",
+				url: "Controller.do?command=changeListCnt&listCnt=" + listCnt + "&page=${requestScope.pageno }",
+				dataType: "json", // 서버에서 반환되는 데이터 타입
+				success: function(data) {
+					console.log(data);
+				},
+				error: function(res) {
+					console.log(res.responseText);
+				},
+				complete: function() {
+					
+				}
+			}); // end ajax
+		}); // end listCnt change
+	}); // end function
+</script>
+<style>	
+	#body {margin: 0 auto;}
+	#body a {color: black;}
+	
+	#body .menutitle {width: 1000px; margin: 0 auto; margin-bottom: 50px; padding: 10px 0 6px 15px; border-bottom: 3px solid #9bcfb8; background-color: white; text-align: left;}
+    #body .menutitle h3 {font-size: 24px; font-weight: bold;}
     
-    a {text-decoration: none; color: black;}
+    #body .boardListCnt {margin: 10px 10px 10px 700px; text-align: center;} /* 보여질 게시글 수 */
+    
+	#body table {width: 800px; margin: 0 auto; border-top: 2px solid #23A41A; border-collapse: collapse;}
+	#body table th {padding: 10px 3px; border-bottom: 1.7px solid #23A41A; font-weight: bolder; text-align: center;}
+	#body table td {padding: 10px 3px; border-bottom: 0.5px solid #D8F6CE; text-align: center;}
+	
+    #body .btn_chkdel {margin: 10px 10px 10px 700px; text-align: center;} /* 글쓰기 버튼 */
+    #body .btn_chkdel .btn_m {background-color: #9bcfb8; color: #23A41A; border: solid 1px #23A41A;}
+	#body .btn_chkdel .btn_m a {text-decoration: none;}
+	
+    #body .paging {text-align: center;}
+    #body .paging a {display: inline-block; width: 22px; height: 22px; margin: 20px 7px 0 7px; vertical-align: top; line-height: 22px; text-decoration: none; text-align: center;}
+    #body .paging .num {background-color: #d5d5d5; border-radius: 3px;}
+    #body .paging .num.on {background-color: #346dff; font-weight: bold; color: #fff;}
+    #body .paging .first { background: url(images/btn_firstpage.png) no-repeat 0 0; background-size: 22px; text-indent: -9999px;}
+    #body .paging .last {background: url(images/btn_lastpage.png) no-repeat 0 0; background-size: 22px; text-indent: -9999px;}
+      
+    #body .search2 {margin: 20px; text-align: center;} /* 게시판 검색 */    
 </style>
 <body>
-	<div class="head">
+	<header>
         <div class="header">
             <div class="login">
                 <a href="term.html"><input type="button" class="login2" value="회원가입"></a>
@@ -65,9 +72,9 @@
                 <a href="main.html"> <input type="button" class="login2" value="로그아웃"></a>
             </div>
             <div>
-                <span class="logo"><a href="main.html"><img src="./images/logo.JPG"></a></span>
+                <span class="logo"><a href="index.jsp"><img src="./images/logo.JPG"></a></span>
                 <div class="search">
-                    <input type="text" class="searchtxt" style="padding-left: 15px;" placeholder="제품 검색">
+                    <input type="text" class="searchtxt" placeholder="제품 검색">
                     <input type="button" class="searchbtn">
                 </div>
             </div>
@@ -106,13 +113,20 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </header>
 
-    <div class="body">
+    <div id="body">
         <div class="menutitle">
             <h3>게시판</h3>
         </div>
-        <div class="blank"></div>
+
+        <p class="boardListCnt">
+        	<select id="listCnt">
+        		<option value='10' selected>10개</option>
+        		<option value='15'>15개</option>
+        		<option value='20'>20개</option>
+        	</select>
+        </p>
         <table>
         	<thead>
 	            <tr>
@@ -128,7 +142,7 @@
 	            <c:forEach items="${requestScope.boards }" var="board">
 	            	<tr>
 	            		<td>${board.board_no }</td>
-	            		<td><a href='Controller.do?command=bdContView&no=${board.board_no }'>${board.board_title }</a></td>
+	            		<td style='text-align: left;'><a href='Controller.do?command=bdContView&no=${board.board_no }'>${board.board_title }</a></td>
 	            		<td>${board.writer }</td>
 	            		<td>${board.postdate }</td>
 	            		<td>${board.viewcnt }</td>
@@ -139,13 +153,24 @@
 		</table>
 
         <p class="btn_chkdel"><button type="button" class="btn_m"><a href="board/write.jsp">글쓰기</a></button></p>
-        <p class="paging">
-            <a href="#" class="first">처음페이지</a>
-            <a href="#" class="num on">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="last">마지막페이지</a>
-        </p>
+        
+        <div class="paging">
+            <a href='Controller.do?command=community&listCnt=${requestScope.listCnt}&page=${requestScope.startPage }' class="first">처음페이지</a>
+            
+            <c:forEach var="i" begin="${requestScope.startPage }" end="${requestScope.endPage }">
+            	<c:choose>
+            		<c:when test="${requestScope.pageno == i}">
+	            		<a href='Controller.do?command=community&listCnt=${requestScope.listCnt}&page=${i }' class="num on">${i }</a>
+					</c:when>
+					<c:otherwise>
+	            		<a href='Controller.do?command=community&listCnt=${requestScope.listCnt}&page=${i }' class="num">${i }</a>
+	            	</c:otherwise>
+            	</c:choose>
+            </c:forEach>
+            
+            <a href='Controller.do?command=community&listCnt=${requestScope.listCnt}&page=${requestScope.endPage }' class="last">마지막페이지</a>
+        </div>
+        
         <form action="" method="post">
             <div class="search2">
                 <select>
@@ -157,6 +182,7 @@
             </div>
         </form>
     </div>
+    ${sessionScope.user.member_name }
 
     <footer>
         <div class="footer">

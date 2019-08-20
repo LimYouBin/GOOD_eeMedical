@@ -7,16 +7,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import gdm.dao.BoardDAO;
 import gdm.dto.BoardVO;
 
-public class BoardListAction implements IActionForward {
+public class BoardListCntJsonAction implements IActionForward {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ClassNotFoundException, SQLException, IOException {
-		System.out.println("index.jsp에서 게시판 이동 시 Action단");
-		
+		// 게시글 가져오기 with paging
 		int pageno = 0; // 페이지 번호
 		int listCnt = 0; // 한 페이지당 보여줄 게시글 수
 		
@@ -31,6 +32,8 @@ public class BoardListAction implements IActionForward {
 		else { // 게시글 수 가 넘어오지않으면 예외처리해주기
 			
 		}
+		
+		System.out.println(pageno + "페이지 " + listCnt + "개씩 게시글 보기");
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		
@@ -52,18 +55,31 @@ public class BoardListAction implements IActionForward {
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		request.setAttribute("listCnt", listCnt);
 		request.setAttribute("pageno", pageno);
 				
 		List<BoardVO> boardList = dao.DisplayBoardList(pageno, listCnt);
 		
-		request.setAttribute("boards", boardList); // 실제 글 목록 request 영역의 boards 속성에 저장
+		// JSon으로 반환하기
+		Gson gson = new Gson();		
+		StringBuilder sb = new StringBuilder();
 		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false); // 포워딩 해야 함
-		forward.setPath("./board/list.jsp"); // 포워딩 할 경로
+		sb.append("[");
+		for(int i=0; i<boardList.size(); i++) {
+			if(i != boardList.size()-1)
+				sb.append(gson.toJson(boardList.get(i)) + ",");
+			else
+				sb.append(gson.toJson(boardList.get(i)));
+		}
+		sb.append("]");		
+		System.out.println(sb);
 		
-		return forward;
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		
+		java.io.PrintWriter out = response.getWriter();
+		out.print(sb);
+		
+		return null;
 	}
 
 }

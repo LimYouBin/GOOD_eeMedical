@@ -33,14 +33,33 @@
 
     .body { padding-bottom: 100px; width: 100%;}
     
-    .menutitle { text-align: left; padding: 30px 0px 0px 0px; border-bottom: 3px solid #9bcfb8; background-color: white; margin: 0 auto; height: 60px; width: 1000px;}
+    .menutitle {text-align: left; border-bottom: 3px solid #9bcfb8; background-color: white; margin: 0 auto; padding: 10px 0 6px 15px; width: 1000px;}
+    
+    .menutitle h3 {font-size: 24px; font-weight: bold;}
+    
+    .writeContainer {width: 1000px; margin: 0 auto; padding-left: 50px;}
+    
+    .inputInfo {margin: 10px 10px 0 0; padding: 0 12px 0 12px; width: 230px; height: 35px;}
+    
+    #bd_writer {float: left;}
+    .writerInfo::after {display: block; content: ''; clear: both; }
+    
+    .inputTitle {width: 728px; margin: 10px 0 0 0;}
+    
+    .boardCautious {margin-top: 10px;}
+    
+    .writeContent {margin-top: 25px;}
+    
+    .bd_cont {padding: 10px 15px 10px 15px; width: 900px; height: 300px;}
+    
+    .boardImgFile, .resubBoard {margin-top: 25px;}
     
     .tab {margin-top: 20px; text-align: center;}
     
     a {text-decoration: none; color: black;}
 </style>
 <body>
-    <div class="head">
+	<div class="head">
         <div class="header">
             <div class="login">
                 <a href="term.html"><input type="button" class="login2" value="회원가입"></a>
@@ -51,8 +70,8 @@
             <div>
                 <span class="logo"><a href="main.html"><img src="../images/logo.JPG"></a></span>
                 <div class="search">
-                    <input type="text" value=" search" class="searchtxt">
-                    <input type="button" class="searchbtn">
+                    <input type="text" class="searchtxt" placeholder="제품 검색" />
+                    <input type="button" class="searchbtn" />
                 </div>
             </div>
         </div>
@@ -92,29 +111,50 @@
         </div>
     </div>
 
-    <div class="body">
+    <div class="body">    	
         <div class="menutitle">
             <h3>글쓰기</h3>
         </div>
-        <ul class="tab">
-            <li>
-                <dl>
-                    <dt>제목</dt>
-                    <dd><input type="text" class="inp" /></dd><!-- 제목은 수정 불가능 하도록 readonly 속성 추가 -->
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>내용</dt>
-                    <dd><textarea rows="5" cols="" class="inpTextArea" ></textarea></dd>
-                </dl>
-            </li>
-            
-            <li>
-                <button type="button" class="btn_m"><a href="board.html">취소</a></button>
-                <button type="button" class="btn_m"><a href="board.html">저장</a></button>
-            </li>
-        </ul>
+        
+        <div class="writeContainer">
+	        <form action="../Controller.do?command=boardWrite" method="post" enctype="multipart/form-data">
+			    <div class="writeBoard">
+					<div class="writerInfo">
+				        <div class="boardInfo">
+				        	<c:choose>
+				        		<c:when test="${sessionScope.user != null }"> <!-- 회원이 글 쓸 때 -->
+				        			<input type="text" id ="bd_writer" class="inputInfo searchtxt" name="bd_writer" value="${sessionScope.user.nickname }" readonly />
+				        		</c:when>
+				        		<c:otherwise> <!-- 비회원이 글 쓸 때 --> <!-- readonly / disabled : 둘다 only read, disabled는 form으로 값 전송시 값 전송 불가-->
+				        			<input type="text" id ="bd_writer" class="inputInfo searchtxt" name="bd_writer" value="(비회원)" readonly />
+				        		</c:otherwise>
+				        	</c:choose>
+				        </div>
+				        <div class="boardInfo">
+				        	<input type="password" id="bd_pwd" class="inputInfo searchtxt" name="bd_pwd" maxlength="20" /><br/>
+				        </div>
+				    </div>
+			        <div class="boardInfo">
+			        	<input type="text" id ="bd_title" class="inputInfo inputTitle searchtxt" name="bd_title" maxlength="40" />
+			        </div>
+			        <div class="boardCautious">
+			        	<span>※ 쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</span><br/>
+			        	<span>※ 음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질 수 있습니다.</span>
+			        </div>
+			        <div class="writeContent">
+			        	<textarea rows="15" cols="150" class="bd_cont searchtxt" name="bd_cont"></textarea>
+			        </div>
+			        <div class="boardImgFile">
+			        	<input type="file" id="bd_img" name="bd_imgfile" />
+			        </div>
+			    </div>
+			    
+		    	<div class="resubBoard">
+		    		<button type="button" class="btn_m">취소</button>
+	            	<button type="submit" class="btn_m">등록</button>
+		    	</div>
+	        </form>
+        </div>
     </div>
 
     <footer>
