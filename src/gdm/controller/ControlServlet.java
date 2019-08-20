@@ -70,7 +70,7 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
-			if(command.equals("community")) { // index.jsp에서 게시판 클릭 시(1page 10 lists)
+			else if(command.equals("community")) { // index.jsp에서 게시판 클릭 시(1page 10 lists)
 				System.out.println("index.jsp에서 게시판 이동 시 controller");
 				
 				action = new BoardListAction();
@@ -86,7 +86,7 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
-			if(command.equals("changeListCnt")) { // 게시판 페이지에서 listCnt의 값이 변경 되었을 시 (x page y lists)
+			else if(command.equals("changeListCnt")) { // 게시판 페이지에서 listCnt의 값이 변경 되었을 시 (x page y lists)
 				System.out.println("게시판 페이지에서 listCnt에 의해 값 변경 시 controller");
 				
 				action = new BoardListCntJsonAction();
@@ -102,7 +102,7 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
-			if(command.equals("bdContView")) {
+			else if(command.equals("bdContView")) {
 				System.out.println("게시글 상세 보기 controller");
 				
 				action = new BoardViewAction();
@@ -118,7 +118,7 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
-			if(command.equals("replySubmit")) { // 게시판 댓글달기
+			else if(command.equals("replySubmit")) { // 게시판 댓글달기
 				System.out.println("댓글달기 controller");
 				
 				action = new BoardReplySubmitJsonAction();
@@ -134,7 +134,7 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
-			if(command.equals("boardWrite")) {
+			else if(command.equals("boardWrite")) {
 				System.out.println("게시글 작성 controller");
 				
 				action = new BoardWriteAction();
@@ -150,7 +150,7 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
-			if(command.equals("boardDelete")) {
+			else if(command.equals("boardDelete")) {
 				System.out.println("게시글 삭제 controller");
 				
 				action = new BoardDeleteAction();

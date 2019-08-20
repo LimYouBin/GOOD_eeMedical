@@ -29,9 +29,9 @@ public class Login implements IActionForward {
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("../index.jsp");
+		forward.setPath("index.jsp");
 		
-		return null;
+		return forward;
 	}
 
 }

@@ -22,7 +22,7 @@ public class BoardDeleteAction implements IActionForward {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		
-		result = dao.BoardDelete(no);
+		result = dao.boardDelete(no);
 		
 		ActionForward forward = new ActionForward();
 		

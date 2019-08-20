@@ -55,7 +55,7 @@ public class BoardListAction implements IActionForward {
 		request.setAttribute("listCnt", listCnt);
 		request.setAttribute("pageno", pageno);
 				
-		List<BoardVO> boardList = dao.DisplayBoardList(pageno, listCnt);
+		List<BoardVO> boardList = dao.displayBoardList(pageno, listCnt);
 		
 		request.setAttribute("boards", boardList); // 실제 글 목록 request 영역의 boards 속성에 저장
 		

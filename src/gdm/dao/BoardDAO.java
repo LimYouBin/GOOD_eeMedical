@@ -1,5 +1,6 @@
 package gdm.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class BoardDAO {
 	}
 
 	// 게시판 출력
-	public List<BoardVO> DisplayBoardList(int pageno, int listCnt) throws ClassNotFoundException, SQLException {
+	public List<BoardVO> displayBoardList(int pageno, int listCnt) throws ClassNotFoundException, SQLException {
 		int offset = (pageno - 1) * listCnt; // 페이지에 보여줄 시작 offset
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
 		String query = "select paging.* from (select * from gdproject.board limit " + offset + ", "+listCnt + ") paging order by board_no desc";
@@ -84,7 +85,7 @@ public class BoardDAO {
 	}
 
 	// 게시글 내용 조회
-	public BoardVO DisplayBoardContent(int bno) throws ClassNotFoundException, SQLException {
+	public BoardVO displayBoardContent(int bno) throws ClassNotFoundException, SQLException {
 		String query = "select * from gdproject.board where board_no=" + bno;
 		BoardVO bvo = null;
 		
@@ -126,7 +127,7 @@ public class BoardDAO {
 	}
 	
 	// 게시글 삭제
-	public boolean BoardDelete(int no) throws ClassNotFoundException, SQLException {
+	public boolean boardDelete(int no) throws ClassNotFoundException, SQLException {
 		boolean result = false;
 		String query = "delete from gdproject.board where board_no = " + no;
 		
@@ -143,5 +144,42 @@ public class BoardDAO {
 		con.close();
 		
 		return result;
+	}
+
+	// 게시글 작성
+	public void insertBoard(BoardVO bvo, boolean isMember) throws ClassNotFoundException, SQLException {
+		Connection con = DBCon.getConnection();
+		
+		if(isMember) { // 회원이 글 쓴다면
+			String query = "{call pro_insertMemberBoard(?, ?, ?, ?, ?, ?, ?)}";
+						
+			CallableStatement cstmt = con.prepareCall(query);
+			cstmt.setInt(1, bvo.getBoard_no());
+			cstmt.setInt(2, bvo.getMember_no());
+			cstmt.setString(3, bvo.getBoard_title());
+			cstmt.setString(4, bvo.getBoard_pwd());
+			cstmt.setString(5, bvo.getWriter());
+			cstmt.setString(6, bvo.getContent());
+			cstmt.setString(7, bvo.getContentimg());
+			cstmt.execute();
+			
+			cstmt.close();			
+		}
+		else { // 비회원이 글 쓴다면
+			String query = "{call pro_insertUnknownBoard(?, ?, ?, ?, ?, ?)}";
+			
+			CallableStatement cstmt = con.prepareCall(query);
+			cstmt.setInt(1, bvo.getBoard_no());
+			cstmt.setString(2, bvo.getBoard_title());
+			cstmt.setString(3, bvo.getBoard_pwd());
+			cstmt.setString(4, bvo.getWriter());
+			cstmt.setString(5, bvo.getContent());
+			cstmt.setString(6, bvo.getContentimg());
+			cstmt.execute();
+			
+			cstmt.close();
+		}
+		
+		con.close();		
 	}	
 }

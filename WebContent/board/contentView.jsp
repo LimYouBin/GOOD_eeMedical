@@ -161,6 +161,7 @@
             </p>
         </div>
         <div class="bcontent">
+        	<img src="${requestScope.board.contentimg }" /><br/><br/>
         	${requestScope.board.content }
         </div>
         <div class="contBtn">

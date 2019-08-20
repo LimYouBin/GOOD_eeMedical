@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import gdm.dao.BoardDAO;
 import gdm.dto.BoardVO;
+import gdm.dto.MembersVO;
 
 public class BoardViewAction implements IActionForward {
 
@@ -20,7 +22,7 @@ public class BoardViewAction implements IActionForward {
 		int bno= Integer.parseInt(request.getParameter("no"));
 		BoardDAO dao = BoardDAO.getInstance();
 		
-		BoardVO bvo = dao.DisplayBoardContent(bno);
+		BoardVO bvo = dao.displayBoardContent(bno);
 		
 		request.setAttribute("board", bvo);
 		

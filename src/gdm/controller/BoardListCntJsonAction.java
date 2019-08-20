@@ -57,7 +57,7 @@ public class BoardListCntJsonAction implements IActionForward {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageno", pageno);
 				
-		List<BoardVO> boardList = dao.DisplayBoardList(pageno, listCnt);
+		List<BoardVO> boardList = dao.displayBoardList(pageno, listCnt);
 		
 		// JSon으로 반환하기
 		Gson gson = new Gson();		
