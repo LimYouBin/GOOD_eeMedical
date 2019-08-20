@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import gdm.dto.BdreplyVO;
 import gdm.dto.BoardVO;
 import gdm.dto.MembersVO;
 import util.DBCon;
@@ -68,8 +69,8 @@ public class BoardDAO {
 	// 전체 게시글 수
 	public int getTotalPostCnt() throws ClassNotFoundException, SQLException {
 		int totalPostCnt = 0;
-		String query = "select count(*) as total from gdproject.board";
-		
+		String query = query = "select count(*) as total from gdproject.board";
+				
 		Connection con = DBCon.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(query);
 		ResultSet rs = pstmt.executeQuery();
@@ -105,6 +106,45 @@ public class BoardDAO {
 		con.close();
 		
 		return bvo;
+	}
+	
+	// 게시글 댓글 조회
+	public List<BdreplyVO> displayBoardReply(int bno) throws ClassNotFoundException, SQLException {
+		List<BdreplyVO> boardList = new ArrayList<BdreplyVO>();
+		String query = "select * from gdproject.bdreply where board_no=" + bno;
+		
+		Connection con = DBCon.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next())
+			boardList.add(new BdreplyVO(rs.getInt("reply_no"), rs.getInt("board_no"), rs.getInt("member_no"), rs.getString("writer"),
+					rs.getString("reply_pwd"), rs.getDate("postdate"), rs.getString("content"), rs.getInt("reply_step"), rs.getInt("reply_order")));
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return boardList;
+	}
+	
+	// 해당글에 대한 전체 댓글 수
+	public int getTotalReplyCnt(int bno) throws ClassNotFoundException, SQLException {
+		int totalReplyCnt = 0;
+		String query = query = "select count(*) as total from gdproject.bdreply where board_no = " + bno;
+				
+		Connection con = DBCon.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next())
+			totalReplyCnt = rs.getInt("total");
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return totalReplyCnt;
 	}
 
 	// 글 번호 중 가장 큰 번호 + 1값 반환
@@ -181,5 +221,5 @@ public class BoardDAO {
 		}
 		
 		con.close();		
-	}	
+	}
 }

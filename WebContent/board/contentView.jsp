@@ -15,8 +15,27 @@
 <script src="js/jquery.min.js"></script> <!-- jQuery를 쓰기위한 선언 -->
 </head>
 <script>
+	function loadReply(){
+		$.ajax({
+			type: "GET",
+			url: "Controller.do?command=loadReply",
+			dataType: "json", // 서버에서 반환되는 데이터 타입
+			success: function(data) {
+				console.log(data);
+			},
+			error: function(res) {
+				console.log(res.responseText);
+			},
+			complete: function() {
+				
+			}
+		}); // end ajax
+	}
+	
 	$(document).ready(function() {
-		$('#rpSubBtn').click(function() {
+		loadReply(); // 게시글 조회 로딩 시
+		
+		$('#rpSubBtn').click(function() { // 댓글 등록 버튼 클릭 시
 			$.ajax({
 				type: "GET",
 				url: "Controller.do?command=replySubmit",
@@ -30,8 +49,8 @@
 				complete: function() {
 					
 				}
-			}); // end ajax			
-		}); // end reply submit		
+			}); // end ajax
+		}); // end reply submit
 	}); // end function
 </script>
 <style>
@@ -172,22 +191,26 @@
 	        </c:if>
         </div>
         
-        <div class="rpNum">전체 리플 <span style="color: red;">1</span>개</div>
+        <div class="rpNum">전체 리플 <span style="color: red;">${requestScope.replys.totalCnt }</span>개</div>
         
-        <div class="comment">
-        	<table>
-        		<colgroup>
-        			<col width="15%">
-        			<col width="68%">
-        			<col width="17%">
-        		</colgroup>
-        		<tr>
-        			<td style='text-align: left;'>가나다라마바사아자</td>
-        			<td style='text-align: left;'>내용</td>
-        			<td style='text-align: right;'>2019-05-15 12:34:15</td>
-        		</tr>
-        	</table>
-        </div>
+        <c:if test="${requestScope.replys.totalCnt != 0}"> <!-- 댓글수가 1개 이상일 때 댓글창을 보여준다. -->
+	        <div class="comment">
+	        	<table>
+	        		<colgroup>
+	        			<col width="15%">
+	        			<col width="68%">
+	        			<col width="17%">
+	        		</colgroup>
+	        		<c:forEach items="${requestScope.replys.replys }" var="reply">
+		        		<tr>
+		        			<td style='text-align: left;'>${reply.writer }</td>
+		        			<td style='text-align: left;'>${reply.content }</td>
+		        			<td style='text-align: right;'>${reply.postdate }</td>
+		        		</tr>
+	        		</c:forEach>
+	        	</table>
+	        </div>
+        </c:if>
         
         <div class="reply">
 	        <form action="" method="post">

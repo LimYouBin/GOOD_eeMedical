@@ -37,13 +37,13 @@ public class BoardListCntJsonAction implements IActionForward {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		
-		int totalPostCnt = dao.getTotalPostCnt(); // 전체 게시글 수
+//		int totalPostCnt = dao.getTotalPostCnt(); // 전체 게시글 수
 		int totalPage = 0; // 총 페이지 수
 		
-		if((totalPostCnt % listCnt) == 0)
-			totalPage = totalPostCnt / listCnt;
-		else
-			totalPage = totalPostCnt / listCnt + 1;
+//		if((totalPostCnt % listCnt) == 0)
+//			totalPage = totalPostCnt / listCnt;
+//		else
+//			totalPage = totalPostCnt / listCnt + 1;
 		
 		int blockPerPage = 10; // 리스트 페이지에서 한번에 보여줄 페이지 수
 		int startPage = (pageno - 1) / blockPerPage * blockPerPage + 1;

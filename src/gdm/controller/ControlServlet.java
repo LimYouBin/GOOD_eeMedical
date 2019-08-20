@@ -118,6 +118,22 @@ public class ControlServlet extends HttpServlet {
 				}
 			}
 			
+			else if(command.equals("loadReply")) { // 게시판 댓글보기
+				System.out.println("댓글읽어오기 controller");
+				
+				action = new BoardReplyLoadJsonAction();
+				
+				try {
+					action.execute(request, response);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 			else if(command.equals("replySubmit")) { // 게시판 댓글달기
 				System.out.println("댓글달기 controller");
 				
